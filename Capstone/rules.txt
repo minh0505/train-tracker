@@ -1,0 +1,5 @@
+General rules regarding Capstone Shared Folder:
+
+1. MUST write a log if you make a change/create anything
+2. Every file MUST be categorized in a related folder, if you can't find a related folder, create a new one (and log it!).
+... Will be added as we go
