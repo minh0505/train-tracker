@@ -9,6 +9,7 @@
        * element that contains the map. */
       #map {
         height: 100%;
+        width: 100%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -21,16 +22,28 @@
 
 
 
-  <!-- Body starts here! -->
+  <!-- Body starts here!
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////
+  -->
   <body>
+    <h3>My Google Maps Demo</h3>
+
+
     <div id="map"></div>
     <script>
+      var saskCoor = {lat: 52.1269724, lng: -106.6579607};
       var map;
+      var maker;
+
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
+          center: saskCoor,
+          zoom: 13
         });
+
+        marker = new google.maps.Marker({position: saskCoor, map: map});
       }
     </script>
 
