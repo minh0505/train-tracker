@@ -1,0 +1,14 @@
+CP interactive map
+http://www.acwr.com/economic-development/rail-maps/canadian-pacific
+
+Cheap Radar Speedgun Video with Arduino and HB100, CDM324 radar sensor
+https://www.youtube.com/watch?v=Kzsh59TM4MY
+
+CN interactive map
+http://cnebusiness.geomapguide.ca/
+
+Distance Matrix and its fields, functions:
+https://developers.google.com/maps/documentation/javascript/distancematrix
+
+All maps and interactions:
+https://rac.jmaponline.net/canadianrailatlas/
