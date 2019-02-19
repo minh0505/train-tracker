@@ -5,18 +5,26 @@
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-        width: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+	/* Styling for header */
+	h3.center {
+		text-align: center;
+		color: blue;
+	}	
+	
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #map {
+		height: 100%;
+		width: 100%;
+    }
+    
+
+	/* Optional: Makes the sample page fill the window. */
+	html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
     </style>
   </head>
 
@@ -28,24 +36,48 @@
   ///////////////////////////////////////////////////////////////
   -->
   <body>
-    <h3>My Google Maps Demo</h3>
+    <h3 class = "center">My Google Maps Demo</h3>
 
 
     <div id="map"></div>
     <script>
-      var saskCoor = {lat: 52.1269724, lng: -106.6579607};
-      var map;
-      var maker;
+		var saskCoor = {lat: 52.1269724, lng: -106.6579607};
+		var map;
 
-      function initMap() {
+		function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: saskCoor,
-          zoom: 13
+			center: saskCoor,
+			zoom: 15
         });
-
-        marker = new google.maps.Marker({position: saskCoor, map: map});
-      }
+		<!-- addMarker(saskCoor.lat, saskCoor.lng); -->
+		} 
     </script>
+	
+	
+	<script>
+		var maker;
+		function addMarker(theLat, theLng) { 
+			marker = new google.maps.Marker({
+				position: {lat: theLat, lng: theLng},
+				map: map
+			});
+		}
+	</script>
+	
+	
+	<script>
+		function updateMarker() {
+			var updateLngLat = setInterval(updateCoor, 2000);
+			var updateMarker = setInterval(addMarker(saskCoor.lat, saskCoor.lng), 2010);
+			function updateCoor () 
+			{
+				saskCoor.lat = saskCoor.lat + 0.1;
+				saskCoor.lng = saskCoor.lng + 0.1;
+			}
+		}
+		
+		window.updateMarker();
+	</script>
 
     <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
