@@ -1,0 +1,47 @@
+HTML is for taging document.  This is a paragraph, this is a title, this is a
+link, etc...,, Then you ad all the pretty pictures and colors with CSS.
+
+PHP is a server side programming  language that is primary used in web
+applications.
+
+Go to amazon.com everything you see is HTML and CSS.
+Everything the site does, like remember you, store stuff in your shopping cart,
+process your one click order, etc... This is all PHP, ruby, Python and whatever
+else Amazon wants to use.
+
+As far as learning, you can learn HTML in a few hours along with Css. You won't
+be able to make anything good- that comes with practice- but, you will
+understand WTF is going on. Now PHP,  that is a full blown programming
+language that is often used to talk to DATABASES, so you have to learn a little
+SQL also. This will take you days if not weeks to wrap your head around.
+
+Now, most people are going to tell you all sorts of crazy stuff about PHP and
+how it relates to HTML and the rest of the Internet. Most of those people are
+idiots!  if you don't understand data structure, loops, variables, functions,
+databases, so injects etc...  You don't know PHP.  You might know some cool
+party tricks, maybe impress your friends, which is cool.
+
+If your talking about really getting into this game of web applications and
+beyond?
+
+this is the recipe for success in this order
+
+1. HTML
+2. CSS
+3. JavaScript - this is a full blown programming language also! So buy a book,
+something with a title like JAvaScript Programming. One you learn key
+programming concepts you can learn the syntax of any language and be
+considerable effective
+4. PHP - it's probably the second most used and popular programming language in
+the world. The first is, you guessed it, JavaScript.
+5. SQL - this is for working with databases.
+
+-> HTML and CSS presentation
+-> Everything else -functionality
+
+Learn all that stuff and you will be able to write entire we applications. How
+effective and secure they are is up to you and how much you know and care to
+know about programming and databases
+
+
+==============================================================================

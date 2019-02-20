@@ -1,0 +1,11 @@
+Static
+- Destinations (add markers)
+LIDAR coor = 52.114558, -106.717831
+Confirm sensor coor = 52.129328, -106.717441
+Destination coor = 52.143756, -106.700490
+
+Requirment:
+- Follow the path
+- Change according to t (calculated by d/v)
+
+
