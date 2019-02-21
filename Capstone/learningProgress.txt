@@ -1,3 +1,5 @@
+<< FUNDAMENTAL >>
+
 HTML is for taging document.  This is a paragraph, this is a title, this is a
 link, etc...,, Then you ad all the pretty pictures and colors with CSS.
 
@@ -39,9 +41,15 @@ the world. The first is, you guessed it, JavaScript.
 -> HTML and CSS presentation
 -> Everything else -functionality
 
-Learn all that stuff and you will be able to write entire we applications. How
-effective and secure they are is up to you and how much you know and care to
-know about programming and databases
+
+
+
+There are two types of scripting languages : client side scripting and server
+side scripting languages.
+- Javascript, VBscript, etc are client side scripting languages. If you write
+code in these, the code is downloaded on client's computer and executed there.
+- PHP, ASP etc are server side scripting languages, they execute on the server
+and only the output is downloaded on the client's computer.
 
 
 ==============================================================================

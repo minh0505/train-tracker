@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Simple Map</title>
-    <link rel="stylesheet" type="text/css" href="webStyle.css" />
-  </head>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>Simple Map</title>
+        <link rel="stylesheet" type="text/css" href="webStyle.css" />
+    </head>
 
 
   <!-- Body starts here!
@@ -23,48 +24,58 @@
 		var map;
 
         // Initializing the map, other functions should be called in here
-		function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-			center: saskCoor,
-			zoom: 15
-        })
-
-        // Initialize the marker
-		addMarker(saskCoor.lat, saskCoor.lng);
-
-        // Animating the marker's movement
-        google.maps.event.addListenerOnce(map, 'idle', function()
+		function initMap()
         {
-            animateMarker(marker, [
-                // The coordinates of the points that we want markers to go to
-                // Should include the check point, destination and any
-                // coordinations in between them to make smooth movement
-                [52.129328, -106.717441],
-                [52.143756, -106.700490]
-            ], speed);
-        });
-    }
+            map = new google.maps.Map(document.getElementById('map'), {
+    			center: saskCoor,
+    			zoom: 15
+            })
+
+            // Calling this every 2 second to create following markers
+            // Clear this when some kind of flag is set
+            addMarker(saskCoor.lat, saskCoor.lng);
+    		setInterval ( function(){addMarker(saskCoor.lat, saskCoor.lng);} , 5000 );
+        }
     </script>
 
 
 	<script>
 		var marker = [];
-        var trainAtIntersection;
+        var trainAtIntersection = 1;
+        var markerIndent = 0;
 
         // Function to initialize marker on the map
-		function addMarker(theLat, theLng) {
-			marker = new google.maps.Marker({
-				position: {lat: theLat, lng: theLng},
-                // icon: 'https://static.thenounproject.com/png/7903-200.png',
-				map: map
-			});
+		function addMarker(theLat, theLng)
+        {
+            if (trainAtIntersection == 1)
+            {
+    			marker[markerIndent] = new google.maps.Marker({
+    				position: {lat: theLat, lng: theLng},
+                    // icon: 'https://static.thenounproject.com/png/7903-200.png',
+    				map: map
+    			});
+
+                animateMarker(marker[markerIndent], [
+                    // The coordinates of the points that we want markers to go to
+                    // Should include the check point, destination and any
+                    // coordinations in between them to make smooth movement
+                    [52.129328, -106.717441],
+                    [52.133754, -106.717559],
+                    [52.137703, -106.713351],
+                    [52.143756, -106.700490],
+                    [52.148457, -106.690377]
+                ], speed);
+
+                markerIndent++;
+                // console.log("The markerIndent is " + markerIndent);
+            }
 		}
 	</script>
 
 
     <script>
     var startPos = [saskCoor.lat, saskCoor.lng];
-    var speed = 60; // km/h
+    var speed = 1500; // km/h
     var delay = 100;
 
     // Function that gives smooth animation to the marker
@@ -106,7 +117,12 @@
                 {
                     marker.setPosition(dest);
                     target++;
-                    if (target == coords.length){ target = 0; }
+
+                    // Terminate the marker
+                    if (target == coords.length)
+                    {
+                        target = 0;
+                    }
 
                     setTimeout(goToPoint, delay);
                 }

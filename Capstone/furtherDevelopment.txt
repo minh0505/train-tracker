@@ -2,10 +2,19 @@ Static
 - Destinations (add markers)
 LIDAR coor = 52.114558, -106.717831
 Confirm sensor coor = 52.129328, -106.717441
+Extra point b/w dest and confirm point 1 = 52.133754, -106.717559
+Extra point b/w dest and confirm point 2 = 52.137703, -106.713351
 Destination coor = 52.143756, -106.700490
+Point of remove marker = 52.148457, -106.690377
 
-Requirment:
+Requirement:
 - Follow the path
 - Change according to t (calculated by d/v)
 
+================================================================
 
+When there are no train:
+- Pi will not send data to the server
+
+If there is a train, data will be continuously sent:
+- Website will keep generate markers to follow
