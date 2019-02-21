@@ -119,9 +119,11 @@
                     target++;
 
                     // Terminate the marker
-                    if (target == coords.length)
+                    // Length - 1 otherwise it will return to original
+                    // coordination first and then remove
+                    if (target == coords.length - 1)
                     {
-                        target = 0;
+                        marker.setMap(null);
                     }
 
                     setTimeout(goToPoint, delay);
