@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="./webStyle.css" />
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <title>Simple Map</title>
-        <link rel="stylesheet" type="text/css" href="webStyle.css" />
     </head>
-
 
   <!-- Body starts here!
   ///////////////////////////////////////////////////////////////
@@ -14,13 +13,19 @@
   ///////////////////////////////////////////////////////////////
   -->
   <body>
-    <h1 class = "center">My Google Maps Demo</h1>
-    <button onclick="isTrain()"> Train? </button>
+    <!-- <h1 class = "center"> My Google Maps Demo </h1> -->
+    <button onclick="isTrain()"> Train </button>
        
-       
+    <p class = "left"> Train speed at LIDAR: <span id = "speed"> </span> </p>
+    <p> Appoximate Time Until Destination: </p>
+    
+    
     <script>
         var trainAtIntersection = 0;
         
+        // Checking if the train is currently at the intersection or not
+        // It starts with 0, will be switched to 1 upon detection of a train 
+        // One the train passed said intersection it will be set to 0 again
         function isTrain()
         {
             if (trainAtIntersection == 1)
@@ -33,10 +38,20 @@
                 trainAtIntersection = 1;
                 console.log(trainAtIntersection);
             }
-        }
-        
-            
+        }           
     </script>
+    
+    
+    <script> 
+        function printInformation()
+        {
+            
+        }
+    </script>
+    
+    
+    
+
 
     <div id="map"></div>
     <script>
@@ -57,7 +72,7 @@
         {
             map = new google.maps.Map(document.getElementById('map'), {
     			center: {lat: 52.129017, lng: -106.670598},
-    			zoom: 13
+    			zoom: 13   
             })
 
             initMarkers()
@@ -70,39 +85,40 @@
         }
     </script>
 
+
     <script>
+    // Initialization of the static markers on the map
     function initMarkers ()
     {
         marker = new google.maps.Marker({
     				position: {lat: LIDARCoor.lat, lng: LIDARCoor.lng},
                     animation: google.maps.Animation.DROP,
-                    // icon: 'https://static.thenounproject.com/png/7903-200.png',
+                    icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-blank-lv.png',
     				map: map
     			});
                 
         marker = new google.maps.Marker({
     				position: {lat: confirmCoor.lat, lng: confirmCoor.lng},
                     animation: google.maps.Animation.DROP,
-                    // icon: 'https://static.thenounproject.com/png/7903-200.png',
+                    icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-circle-lv.png',
     				map: map
     			});
                 
         marker = new google.maps.Marker({
     				position: {lat: destinationCoor.lat, lng: destinationCoor.lng},
-                    // icon: 'https://static.thenounproject.com/png/7903-200.png',
+                    icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-stars-lv.png',
                     animation: google.maps.Animation.DROP,
     				map: map
     			});
                 
         marker = new google.maps.Marker({
     				position: {lat: removalCoor.lat, lng: removalCoor.lng},
-                    // icon: 'https://static.thenounproject.com/png/7903-200.png',
+                    icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-square-lv.png',
                     animation: google.maps.Animation.DROP,
     				map: map
     			});
     }
     </script>
-    
     
     
 	<script>
@@ -116,7 +132,7 @@
             {
     			marker[markerIndent] = new google.maps.Marker({
     				position: {lat: theLat, lng: theLng},
-                    // icon: 'https://static.thenounproject.com/png/7903-200.png',
+                    icon: 'http://maps.google.com/mapfiles/kml/pal4/icon57.png',
     				map: map
     			});
 
@@ -140,8 +156,10 @@
 
     <script>
     var startPos = [saskCoor.lat, saskCoor.lng];
-    var speed = 1500; // km/h
+    var speed = 60; // km/h
     var delay = 100;
+    
+    document.getElementById("speed").innerHTML = speed;
 
     // Function that gives smooth animation to the marker
     function animateMarker(marker, coords, km_h)
