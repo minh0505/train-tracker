@@ -7,17 +7,13 @@
         <title>Simple Map</title>
     </head>
 
-  <!-- Body starts here!
-  ///////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////
-  -->
+
   <body>
-    <!-- <h1 class = "center"> My Google Maps Demo </h1> -->
     <button onclick="isTrain()"> Train </button>
+    <button onclick="changeSpeed()"> Speed </button>
        
     <p class = "left"> Train speed at LIDAR: <span id = "speed"> </span> </p>
-    <p> Appoximate Time Until Destination: </p>
+    <!-- <p> Appoximate Time Until Destination: </p> -->
     
     
     <script>
@@ -31,28 +27,38 @@
             if (trainAtIntersection == 1)
             {
                 trainAtIntersection = 0;
-                console.log(trainAtIntersection);
+                // console.log(trainAtIntersection);
             }
             else
             {
                 trainAtIntersection = 1;
-                console.log(trainAtIntersection);
+                // console.log(trainAtIntersection);
             }
         }           
     </script>
     
     
-    <script> 
-        function printInformation()
+    <script>
+        var theSpeed = 0
+    
+        function changeSpeed()
         {
-            
-        }
+            if (theSpeed == 0)
+            {
+                speed = 1500;
+                console.log(speed);
+                theSpeed = 1;
+            }
+            else
+            {
+                speed = 60;
+                console.log(speed);
+                theSpeed = 0;
+            }
+        }   
     </script>
     
     
-    
-
-
     <div id="map"></div>
     <script>
         // The initial coordination that the map will centered on center of Saskatoon (saskCoor)
@@ -93,27 +99,29 @@
         marker = new google.maps.Marker({
     				position: {lat: LIDARCoor.lat, lng: LIDARCoor.lng},
                     animation: google.maps.Animation.DROP,
-                    icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-blank-lv.png',
+                    icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-blank.png',
     				map: map
     			});
-                
+ 
+ 
         marker = new google.maps.Marker({
     				position: {lat: confirmCoor.lat, lng: confirmCoor.lng},
                     animation: google.maps.Animation.DROP,
                     icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-circle-lv.png',
     				map: map
     			});
-                
+  
+  
         marker = new google.maps.Marker({
     				position: {lat: destinationCoor.lat, lng: destinationCoor.lng},
-                    icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-stars-lv.png',
+                    icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-stars.png',
                     animation: google.maps.Animation.DROP,
     				map: map
     			});
                 
         marker = new google.maps.Marker({
     				position: {lat: removalCoor.lat, lng: removalCoor.lng},
-                    icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-square-lv.png',
+                    icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-square.png',
                     animation: google.maps.Animation.DROP,
     				map: map
     			});
@@ -158,7 +166,9 @@
     var startPos = [saskCoor.lat, saskCoor.lng];
     var speed = 60; // km/h
     var delay = 100;
+    var markerCurPos = [];
     
+    // Tag the speed so that we can print later on
     document.getElementById("speed").innerHTML = speed;
 
     // Function that gives smooth animation to the marker
