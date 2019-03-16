@@ -8,22 +8,29 @@
     </head>
 
 
-  <body>
-    <button onclick="isTrain()"> Train </button>
-    <button onclick="changeSpeed()"> Speed </button>
+    <body>
+    <button onclick="isTrain()"> Demo </button>
+    <!-- <button onclick="changeSpeed()"> Speed </button> -->
        
-    <p class = "left"> Train speed at LIDAR: <span id = "speed"> </span> </p>
+    <p class = "left"> Train speed at LIDAR: <span id = "speed"></span> km/h </p>
     <!-- <p> Appoximate Time Until Destination: </p> -->
     
     
     <script>
         var trainAtIntersection = 0;
+        var demo = 0;
         
         // Checking if the train is currently at the intersection or not
         // It starts with 0, will be switched to 1 upon detection of a train 
         // One the train passed said intersection it will be set to 0 again
         function isTrain()
         {
+            if (demo == 0)
+            {
+                window.setTimeout(isTrain, 20000);
+            }
+            demo = 1;            
+            
             if (trainAtIntersection == 1)
             {
                 trainAtIntersection = 0;
@@ -39,6 +46,9 @@
     
     
     <script>
+        // In the instance that the speed is updated
+        // How do we update the dots?
+        // -- TODO
         var theSpeed = 0
     
         function changeSpeed()
@@ -54,6 +64,21 @@
                 speed = 60;
                 console.log(speed);
                 theSpeed = 0;
+                
+                markerIndent = 0;
+                
+                animateMarker(marker[markerIndent], [
+                    // The coordinates of the points that we want markers to go to
+                    // Should include the check point, destination and any
+                    // coordinations in between them to make smooth movement
+                    [confirmCoor.lat, confirmCoor.lng],
+                    [extraCoor1.lat, extraCoor1.lng],
+                    [extraCoor2.lat, extraCoor2.lng],
+                    [destinationCoor.lat, destinationCoor.lng],
+                    [removalCoor.lat, removalCoor.lng]
+                ], speed);
+
+                markerIndent++;
             }
         }   
     </script>
@@ -64,6 +89,7 @@
         // The initial coordination that the map will centered on center of Saskatoon (saskCoor)
         // The other coordinations are as the names described. Extra coors are used to smoothen the curved path that the train travels.
 		var saskCoor = {lat: 52.114558, lng: -106.717831};
+        var focusMapCoor = {lat: 52.1321858, lng: -106.7156222};
         var LIDARCoor = {lat: 52.114558, lng: -106.717831};
         var confirmCoor = {lat: 52.129328, lng: -106.717441};
         var extraCoor1 = {lat: 52.133754, lng: -106.717559};
@@ -77,7 +103,7 @@
 		function initMap()
         {
             map = new google.maps.Map(document.getElementById('map'), {
-    			center: {lat: 52.129017, lng: -106.670598},
+    			center: {lat: focusMapCoor.lat, lng: focusMapCoor.lng},
     			zoom: 13   
             })
 
@@ -99,20 +125,20 @@
         marker = new google.maps.Marker({
     				position: {lat: LIDARCoor.lat, lng: LIDARCoor.lng},
                     animation: google.maps.Animation.DROP,
-                    icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-blank.png',
+                    icon: 'http://maps.google.com/mapfiles/kml/pushpin/wht-pushpin.png',
     				map: map
     			});
  
- 
+ /*
         marker = new google.maps.Marker({
     				position: {lat: confirmCoor.lat, lng: confirmCoor.lng},
                     animation: google.maps.Animation.DROP,
                     icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-circle-lv.png',
     				map: map
     			});
+  */
   
-  
-        marker = new google.maps.Marker({
+        destinationMarker = new google.maps.Marker({
     				position: {lat: destinationCoor.lat, lng: destinationCoor.lng},
                     icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-stars.png',
                     animation: google.maps.Animation.DROP,
@@ -121,7 +147,7 @@
                 
         marker = new google.maps.Marker({
     				position: {lat: removalCoor.lat, lng: removalCoor.lng},
-                    icon: 'http://maps.google.com/mapfiles/kml/paddle/blu-square.png',
+                    icon: 'https://cdn0.iconfinder.com/data/icons/fatcow/32/flag_finish.png',
                     animation: google.maps.Animation.DROP,
     				map: map
     			});
@@ -164,9 +190,9 @@
 
     <script>
     var startPos = [saskCoor.lat, saskCoor.lng];
-    var speed = 60; // km/h
+    var speed = 1200; // km/h is also the input km_h
     var delay = 100;
-    var markerCurPos = [];
+    
     
     // Tag the speed so that we can print later on
     document.getElementById("speed").innerHTML = speed;
@@ -199,8 +225,20 @@
             {
                 lat += deltaLat;
                 lng += deltaLng;
+                
+                if (lng > destinationCoor.lng)
+                {
+                    destinationMarker = new google.maps.Marker({
+                        position: {lat: destinationCoor.lat, lng: destinationCoor.lng},
+                        icon: 'http://maps.google.com/mapfiles/kml/paddle/red-stars.png',
+                        // animation: google.maps.Animation.DROP,
+                        map: map
+                    });
+                }
+                
+                    
                 i += step;
-
+   
                 if (i < distance)
                 {
                     marker.setPosition(new google.maps.LatLng(lat, lng));
