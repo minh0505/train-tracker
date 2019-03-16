@@ -1,20 +1,39 @@
 /* Styling for header */
-h3.center {
+h1.center {
     text-align: center;
-    color: black;
+    color: red;
 }
 
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 #map {
-    height: 100%;
-    width: 100%;
+    height: 70%;
+    width: 60%;
 }
 
+body,h1 {font-family: "Raleway", sans-serif}
 
 /* Optional: Makes the sample page fill the window. */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+body, html {height: 100%}
+
+logo {
+    text-indent: 50px;
+}
+
+#status {
+    color: white;
+    font-size: 30px;
+}
+
+.bgimg {
+  background-image: url('https://www.zastavki.com/pictures/1920x1200/2015/World___USA_Night_train_under_the_stars_106172_18.jpg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
 }

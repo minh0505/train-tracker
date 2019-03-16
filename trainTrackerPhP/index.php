@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./webStyle.css" />
+        <link rel="stylesheet" type="text/css" href="./webStyle.css?modified=20012009" />
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <title>Simple Map</title>
+        <title>Traintect</title>
+                
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="icon" href="https://image.flaticon.com/icons/png/512/64/64332.png" type="image/x-icon">
     </head>
-
-
+    
+    
+    
     <body>
+    
+    <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+        <div id="status" class="w3-display-left w3-padding-large"> Status: Offline <br> Train Speed: N/A </div>
+        <div class="w3-display-bottomleft w3-padding-large">Traintect All Rights Reserved</div>
+    </div>
+
+    
+    <!--
     <button onclick="isTrain()"> Demo </button>
-    <!-- <button onclick="changeSpeed()"> Speed </button> -->
+    
+    <button onclick="changeSpeed()"> Speed </button> 
        
     <p class = "left"> Train speed at LIDAR: <span id = "speed"></span> km/h </p>
-    <!-- <p> Appoximate Time Until Destination: </p> -->
+    <p> Appoximate Time Until Destination: </p> 
+    -->
     
+    <div class="w3-display-topleft">
+    <img src="./TraintectLogo.png"  style = "margin: 10px 20px" />
+    </div>
     
     <script>
         var trainAtIntersection = 0;
@@ -45,46 +64,7 @@
     </script>
     
     
-    <script>
-        // In the instance that the speed is updated
-        // How do we update the dots?
-        // -- TODO
-        var theSpeed = 0
-    
-        function changeSpeed()
-        {
-            if (theSpeed == 0)
-            {
-                speed = 1500;
-                console.log(speed);
-                theSpeed = 1;
-            }
-            else
-            {
-                speed = 60;
-                console.log(speed);
-                theSpeed = 0;
-                
-                markerIndent = 0;
-                
-                animateMarker(marker[markerIndent], [
-                    // The coordinates of the points that we want markers to go to
-                    // Should include the check point, destination and any
-                    // coordinations in between them to make smooth movement
-                    [confirmCoor.lat, confirmCoor.lng],
-                    [extraCoor1.lat, extraCoor1.lng],
-                    [extraCoor2.lat, extraCoor2.lng],
-                    [destinationCoor.lat, destinationCoor.lng],
-                    [removalCoor.lat, removalCoor.lng]
-                ], speed);
-
-                markerIndent++;
-            }
-        }   
-    </script>
-    
-    
-    <div id="map"></div>
+    <div id="map" class="w3-display-bottomright" ></div>
     <script>
         // The initial coordination that the map will centered on center of Saskatoon (saskCoor)
         // The other coordinations are as the names described. Extra coors are used to smoothen the curved path that the train travels.

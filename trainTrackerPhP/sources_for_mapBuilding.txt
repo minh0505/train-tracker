@@ -10,5 +10,8 @@ http://cnebusiness.geomapguide.ca/
 Distance Matrix and its fields, functions:
 https://developers.google.com/maps/documentation/javascript/distancematrix
 
-All maps and interactions:
+All maps and interactions (include RULER!)
 https://rac.jmaponline.net/canadianrailatlas/
+
+Get map icon here:
+http://kml4earth.appspot.com/icons.html

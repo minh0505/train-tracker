@@ -14,6 +14,8 @@ Requirement:
 Grab icons here:
 http://kml4earth.appspot.com/icons.html
 
+The distance from the LIDAR to the point of interest is about 3.7 km => 3.7 minutes at 60km/h
+
 ================================================================
 
 When there are no train:
